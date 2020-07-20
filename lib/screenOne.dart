@@ -1,8 +1,12 @@
+import 'package:bmi_calculator/calculator_brain.dart';
+import 'package:bmi_calculator/results_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'Icon_content.dart';
 import 'Reusabale_Card.dart';
+import 'RoundIconButton.dart';
+import 'buttom.dart';
 import 'constent.dart';
 
 enum TypeGender { male, female }
@@ -255,35 +259,21 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: Colors.red,
-            margin: EdgeInsets.only(top: 10),
-            width: double.infinity,
-            height: KbouttmCountenerHight,
+          ButtomEne(
+            onTap: () {
+              CalculatorBrain cale =
+                  CalculatorBrain(height: height, weight: weight);
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return ResultsPage(
+                  bmiResult: cale.CalculateBMI(),
+                  resultText: cale.getResult(),
+                  interpretation: cale.interpretation(),
+                );
+              }));
+            },
+            buttomTitle: 'Calculate',
           ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.add),
-      ),
-    );
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  RoundIconButton({this.icon, this.onpressed});
-  final IconData icon;
-  final Function onpressed;
-  @override
-  Widget build(BuildContext context) {
-    return FloatingActionButton(
-      onPressed: onpressed,
-      shape: CircleBorder(),
-      backgroundColor: Color(0xff4c4f5e),
-      child: Icon(
-        icon,
-        color: Colors.white,
       ),
     );
   }

@@ -14,7 +14,7 @@ class ReusabaleCard extends StatelessWidget {
     return GestureDetector(
       onTap: ontapes,
       child: Container(
-        width: 150,
+        width: double.infinity,
         child: cardChild,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
